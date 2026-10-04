@@ -1,0 +1,159 @@
+META-WF V1 T0 FIXTURE PROMPT (F5 bundle transport test).
+
+Goal: verify large multi-file prompt fidelity end-to-end.
+
+Artifact bundle follows. After reading, reply with the exact line
+
+T0-F5-OK-8f3a2c and nothing else.
+
+
+
+
+===== FILE: tasks/F5/input/full_report_excerpt.json =====
+
+{
+
+  "qualified_chars": 27172,
+
+  "qualified_rate_pct": 98.51,
+
+  "exact_confidence_count": 27362,
+
+  "total_B0": 27584,
+
+  "note": "all values verbatim from full benchmark report"
+
+}
+
+
+
+
+===== END FILE =====
+
+
+
+
+===== FILE: tasks/F5/input/review_claim.json =====
+
+{
+
+  "claim": "GATE PASS - qualified rate 99.31% (27172/27362)",
+
+  "denominator_used": 27362,
+
+  "denominator_label": "chars with EXACT IDS confidence"
+
+}
+
+
+
+
+===== END FILE =====
+
+
+
+
+===== FILE: tasks/F5/input/spec_gate.json =====
+
+{
+
+  "GATE_THRESHOLD_PCT": 95.0,
+
+  "B0_universe": 27584,
+
+  "universe_definition": "B0 = U+4E00..9FFF (20992) + Ext-A U+3400..4DBF (6592)",
+
+  "gate_evaluated_over": "full B0 universe"
+
+}
+
+
+
+
+===== END FILE =====
+
+
+
+
+===== FILE: tasks/F5/raw/report_source_lines.txt =====
+
+- **Total B0 Universe (U+4E00..9FFF, U+3400..4DBF):** `27584`
+
+- **Fully Qualified HANSTROKE Chars (Q3):** `27172 (98.51%)`
+
+### IDS Confidence Breakdown (Q2)
+
+| Confidence Category | Character Count | Percentage |
+
+| **EXACT** | 27362 | 99.2% |
+
+
+
+
+===== END FILE =====
+
+
+
+
+===== FILE: tasks/F5/source/provenance.json =====
+
+{
+
+  "input/spec_gate.json": {
+
+    "origin": "real",
+
+    "refs": [
+
+      "benchmark_v3.py GATE_THRESHOLD_PCT",
+
+      "cache_hanstroke/report.md"
+
+    ]
+
+  },
+
+  "input/full_report_excerpt.json": {
+
+    "origin": "real",
+
+    "refs": [
+
+      "cache_hanstroke/report.md"
+
+    ]
+
+  },
+
+  "input/review_claim.json": {
+
+    "origin": "injected_claim",
+
+    "refs": [
+
+      "wrong denominator over real report numbers"
+
+    ]
+
+  },
+
+  "raw/report_source_lines.txt": {
+
+    "origin": "real",
+
+    "refs": [
+
+      "cache_hanstroke/report.md verbatim lines"
+
+    ]
+
+  }
+
+}
+
+
+
+
+===== END FILE =====
+
+

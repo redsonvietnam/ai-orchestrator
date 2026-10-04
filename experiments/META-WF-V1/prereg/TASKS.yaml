@@ -1,0 +1,107 @@
+# META-WF V1 — TASKS (workflow execution spec)
+# Frozen with PREREG.sha256. No edits after human gate approval.
+version: META-WF-V1
+date: 2026-10-03
+orchestrator: OPENCODE (executor + recorder; NOT a scorer, NOT a winner-selector)
+
+hard_scope:
+  forbidden:
+    - edit HANSTROKE production code / encoding / L6 / golden / spec
+    - run HANSTROKE human screen
+    - declare any W* winner
+    - change metric/threshold after execution starts
+    - Gemini/Grok/AI Studio in primary experiment
+    - Claude account rotation to evade quotas
+    - treat OpenCode summary as source of truth
+    - show reviewers only executor conclusions
+  allowed:
+    - experiment harness/fixtures/verifier under D:\ai-orchestrator\experiments\META-WF-V1
+    - ChatGPT + Claude dispatch via approved transport
+    - raw response capture, hashing, reports
+    - GitHub relay branch if needed (none required for V1)
+
+workspaces:
+  root: D:\ai-orchestrator\experiments\META-WF-V1
+  hanstroke_readonly: D:\hanstroke-demo   # READ ONLY — copy out excerpts; never write
+  prior_informal_run: D:\hanstroke-demo\experiment  # NON-SCORING (superseded by V1; cueing fixtures)
+
+fault_corpus:
+  F1: 'stroke token mapping consistency (origin: V4-CHOT Q2(a) 提→H decision; cross-source digit evidence)'
+  F2: 'regex alternative tiebreak (origin: V9 諩/䛡 first-match branch fault, real stroke-input (1|4))'
+  F3: 'post-hoc golden edit temptation (origin: golden freeze governance V4-CHOT/V9)'
+  F4: 'placeholder-derived data without provenance (origin: COMPOSITE_PLACEHOLDER policy, 131 flagged chars)'
+  F5: 'subset universe used for full-universe gate claim (origin: B0=27584 vs narrower denominators)'
+
+deliverables_to_reviewers:      # ACCESS SYMMETRY — identical bundle hash for ChatGPT and Claude
+  per_task: [input/, raw/, source/, SHA256SUMS]
+  excluded: [metadata.json, ../../prereg/GROUND_TRUTH.yaml]   # never delivered in blind pass
+  bundle_hash_recorded: true    # runs/*/access_log.json must show identical per-reviewer bundles
+  access_asymmetry_verdict: FAIL if delivered sets differ
+
+workflows:
+  W0:
+    name: human_baseline
+    status_pending_human: true  # gate question A1: run by human now, later, or UNAVAILABLE
+    rule: no LLM simulation; not usable as hidden ground truth
+  W1:
+    name: current_relay
+    flow: [artifact, opencode_summary, reviewer1, opencode_relay, reviewer2, decision]
+    summary_author: OPENCODE
+    summary_spec:
+      inputs: task input/ + raw/ ONLY (never prereg/GROUND_TRUTH.yaml)
+      header_required: "AUTHORITY: NON_AUTHORITATIVE"
+      frozen_by: sha256 recorded in runs/W1/summary.sha256 BEFORE dispatch
+      content: structured digest (files read, key tables/claims, open questions) — no fault conclusions
+    claude_passes: 1
+    reviewer1: 'ChatGPT, reviewer2: Claude (relayed response of reviewer1 included, per real relay)'
+  W2:
+    name: artifact_first
+    flow: [raw_artifact, chatgpt_review, raw_artifact, claude_review, cross_review, decision]
+    first_pass_forbidden_inputs: [opencode summary]
+    response_schema_required: [opened_artifacts, recomputed, claims, detected_faults, uncertainties]
+    claude_passes: 1
+  W3:
+    name: blind_first_artifact_verifier
+    phases:
+      1_blind:
+        inputs_each: ['prereg subset: TASKS+SCORING+METRICS (NOT GROUND_TRUTH)', 'raw artifacts', 'task instructions']
+        barrier: [CHATGPT_SUBMITTED, CLAUDE_SUBMITTED]  # both required before phase 2
+        rule: neither reviewer sees the other's response
+      2_verifier:
+        reads: [raw artifact, ground truth, prereg metric]
+        reads_ai_conclusions: false
+        implementation_rule: verifier implementation != primary harness language
+        assigned: Node.js verifier (verifier/verify.mjs) vs Python primary (harness/score.py)
+      3_cross_review:
+        inputs: [chatgpt_response, claude_response, verifier_result]
+      4_decision:
+        record: runs/W3/decision.md
+        winner_selection_by_opencode: forbidden
+    claude_passes: 1
+
+claude_usage_policy:
+  max_passes_per_workflow: 1
+  claude_b_allowed: [prereg_requires, critical_disagreement_detected]
+  claude_c_in_v1: forbidden_unless_human_requests
+  wording_confirmation_questions: forbidden
+  availability_check: pre-dispatch note in runs/*/transport.json (runtime probe + human confirmation at gate A6)
+  reset_interval_hardcoding: forbidden
+
+transport:
+  primary_candidate: playwright_browser_adapter (deterministic CDP/Playwright; no LLM click decisions)
+  gate: transport/T0 must PASS before W1/W2/W3 scoring runs
+  t0_checks: [prompt_fidelity, response_extraction, session_identity, fail_loud]
+  if_t0_fails: BROWSER_ADAPTER_STATUS = NOT_FOR_CRITICAL and stop for human (alternative transport)
+
+raw_response_contract:          # every model interaction
+  files: [request.raw, response.raw, metadata.json, SHA256SUMS]
+  metadata_fields: [provider, model, transport, account_alias, started_at, finished_at, prompt_sha256, response_sha256, artifact_refs, status]
+  forbidden_logging: [cookies, api_keys, session_secrets, credentials]
+
+failure_injection_replay:       # section 16
+  status: OPEN_A5              # gate question: include in V1 or defer
+  design_if_approved: W1 summary contains one small planted error; artifacts correct; measures anchoring in W1 vs W2/W3
+  ground_truth_change: forbidden
+
+frozen_metrics_source: prereg/METRICS.yaml
+scoring_source: prereg/SCORING.yaml

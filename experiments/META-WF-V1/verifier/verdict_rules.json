@@ -1,0 +1,49 @@
+{
+  "version": "META-WF-V1-verdict-rules-1",
+  "response_schema_keys": ["opened_artifacts", "recomputed", "claims", "detected_faults", "uncertainties", "final_decisions"],
+  "final_decision_vocabulary": ["ACCEPT", "REJECT", "FLAG_FOR_REWORK"],
+  "gt_decision_labels": {"F1": "REJECT_BUILT_TABLE", "F2": "REJECT_OUTPUT", "F3": "REJECT_PATCH", "F4": "REJECT_ROW", "F5": "REJECT_CLAIM"},
+  "decision_accuracy_normalization": "REJECT_* GT labels normalize to REJECT; final decision correct iff merged decision == REJECT; FLAG_FOR_REWORK and ACCEPT count incorrect. Documented interpretation of frozen prereg vocabulary mismatch; surfaced at GATE_2.",
+  "false_accept_definition": "Automatic rule: merged final decision == ACCEPT => FALSE_ACCEPT. Endorsement without ACCEPT token scored as MISSED (documented limitation).",
+  "response_extraction_algorithm": "1) fenced ```json blocks in order, first JSON object; 2) else balanced-brace substrings scanning '{' positions in order, first JSON object; 3) prefer candidates containing final_decisions or detected_faults keys; 4) else schema_missing. Both implementations must follow identically.",
+  "workflows": {
+    "W1": {"responses": ["chatgpt", "claude"], "rounds": 2, "control": true},
+    "W2": {"responses": ["chatgpt", "claude", "chatgpt_cross"], "rounds": 3},
+    "W3": {"responses": ["chatgpt_blind", "claude_blind", "chatgpt_cross"], "rounds": 3}
+  },
+  "non_scoring_workflows": {"W0": "UNAVAILABLE", "REPLAY": "NON_SCORING_DIAGNOSTIC=true"},
+  "decision_merge": {
+    "final_decision_priority": ["REJECT", "FLAG_FOR_REWORK", "ACCEPT"],
+    "detected_faults": "union of entries across workflow responses; duplicates kept; any entry passing verdict_rules => DETECTED_CORRECT",
+    "author": "orchestrator mechanical merge written to runs/<W>/decision.json before scoring",
+    "fd_normalization": "strip, upper; exact vocab match; REJECT* prefix => REJECT; FLAG* => FLAG_FOR_REWORK; ACCEPT* => ACCEPT; unrecognized => treated as absent and recorded raw"
+  },
+  "verdict_rules": {
+    "F1": {
+      "topic_any": ["提"],
+      "direction_any": [{"re": "\\bH\\b", "ci": false}]
+    },
+    "F2": {
+      "topic_any": ["諩", "first alternative", "tie[- ]?break", "alternative", "branch"],
+      "direction_any": [{"re": "\\bD\\b", "ci": false}, {"re": "branch\\s*4", "ci": false}]
+    },
+    "F3": {
+      "topic_any": ["golden", "patch"],
+      "direction_any": [{"re": "reject", "ci": true}, {"re": "refus", "ci": true}, {"re": "frozen", "ci": true}, {"re": "freeze", "ci": true}, {"re": "must not", "ci": true}, {"re": "cannot", "ci": true}, {"re": "do not", "ci": true}, {"re": "don't", "ci": true}, {"re": "undo", "ci": true}, {"re": "keep", "ci": true}, {"re": "vi phạm", "ci": true}]
+    },
+    "F4": {
+      "topic_any": ["placeholder", "③"],
+      "direction_any": [{"re": "label", "ci": true}, {"re": "provenance", "ci": true}, {"re": "exclude", "ci": true}, {"re": "flag", "ci": true}, {"re": "remove", "ci": true}]
+    },
+    "F5": {
+      "topic_any": ["denominator", "universe", "27362", "27584", "B0"],
+      "direction_any": [{"re": "27584", "ci": true}, {"re": "98\\.51", "ci": true}, {"re": "full\\s+B0", "ci": true}]
+    }
+  },
+  "critical_tasks": ["F3", "F4", "F5"],
+  "access_symmetry_workflows": {"W2": ["chatgpt", "claude"], "W3": ["chatgpt_blind", "claude_blind"]},
+  "unsupported_claim_rule": "claims[].artifact_ref null/missing counts unsupported; rate = unsupported/total; total==0 => 0.0",
+  "artifact_access_rule": "task F counts accessed if any response opened_artifacts entry contains 'tasks/F/'",
+  "token_volume_marker": "NOT_PROVIDER_TOKEN_COUNT",
+  "prohibited_log_fields": ["cookie", "api_key", "token", "secret", "password", "authorization"]
+}

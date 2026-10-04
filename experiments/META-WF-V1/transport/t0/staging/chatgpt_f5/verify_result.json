@@ -1,0 +1,16 @@
+{
+  "provider": "chatgpt",
+  "prompt": "f5",
+  "prompt_sha256_expected": "6fb3522d77e9feb4938d93cb808b6180efefed523df271e1e8dfb49780fa3265",
+  "checks": {
+    "prompt_fidelity": true,
+    "session_identity": true,
+    "response_extraction": true,
+    "fail_loud": true
+  },
+  "status": "ok",
+  "fail_reasons": [],
+  "thread_url": "https://chatgpt.com/c/6ac01362-d820-83ec-8eb9-94a768e9418e",
+  "prompt_sha256": "6fb3522d77e9feb4938d93cb808b6180efefed523df271e1e8dfb49780fa3265",
+  "response_sha256": "6fc92c38ed7dd679e93491959a1f8f0f346828b741c6056e96ae5e1f7757b0d2"
+}

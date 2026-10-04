@@ -1,0 +1,10 @@
+--- a/cache_hanstroke/golden.json
++++ b/cache_hanstroke/golden.json
+@@ -1,7 +1,7 @@
+   "以": {
+     "codepoint": "U+4EE5",
+     "total": 4,
+-    "first": "Z",
++    "first": "H",
+     "last": "D"
+   }

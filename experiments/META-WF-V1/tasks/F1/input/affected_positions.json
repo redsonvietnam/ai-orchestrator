@@ -1,0 +1,77 @@
+{
+  "note": "chars whose cnchar letter 'i' (stroke name 提) appears at these stroke-input positions",
+  "rows": [
+    {
+      "char": "打",
+      "cnchar_letter_sequence": "jgijg",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "12112",
+      "expanded_stroke_input": "12112",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    },
+    {
+      "char": "孔",
+      "cnchar_letter_sequence": "egiu",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "5215",
+      "expanded_stroke_input": "5215",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    },
+    {
+      "char": "扎",
+      "cnchar_letter_sequence": "jgiu",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "1215",
+      "expanded_stroke_input": "1215",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    },
+    {
+      "char": "功",
+      "cnchar_letter_sequence": "jfirs",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "12153",
+      "expanded_stroke_input": "12153",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    },
+    {
+      "char": "北",
+      "cnchar_letter_sequence": "fjisu",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "211(15|35|53)",
+      "expanded_stroke_input": "21115",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    },
+    {
+      "char": "扑",
+      "cnchar_letter_sequence": "jgifk",
+      "positions_of_letter_i": [
+        2
+      ],
+      "stroke_input_regex": "12124",
+      "expanded_stroke_input": "12124",
+      "digit_at_i_positions": [
+        "1"
+      ]
+    }
+  ]
+}

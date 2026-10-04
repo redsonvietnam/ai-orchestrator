@@ -1,0 +1,390 @@
+{
+  "verifier_agreement": {
+    "cells": [
+      {
+        "agree": true,
+        "scorer": "DETECTED_CORRECT",
+        "task": "F1",
+        "verifier": "DETECTED_CORRECT",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "DETECTED_CORRECT",
+        "task": "F2",
+        "verifier": "DETECTED_CORRECT",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "DETECTED_CORRECT",
+        "task": "F3",
+        "verifier": "DETECTED_CORRECT",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "DETECTED_CORRECT",
+        "task": "F4",
+        "verifier": "DETECTED_CORRECT",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "DETECTED_CORRECT",
+        "task": "F5",
+        "verifier": "DETECTED_CORRECT",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F1",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F2",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F3",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F4",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F5",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F1",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F2",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F3",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F4",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F5",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      }
+    ],
+    "rate": 1.0
+  },
+  "workflows": {
+    "W1": {
+      "accessed_tasks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "claims_total": 4,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 2,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT",
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "token_class_built.json 提 row built table maps 提 to class D while locked spec and digit evidence say H Flag the 提 row; class must be H; do not adopt the built table",
+              "topic_ok": true
+            },
+            {
+              "direction_ok": true,
+              "response": "claude",
+              "text": "token_class_built.json 提 row built table maps 提 to class D while locked spec and digit evidence say H Flag the 提 row; class must be H; do not adopt the built table",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "high",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F2": {
+          "detection_entries": 2,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT",
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "pipeline_output.json first-alternative pick for 諩 first_match_wins takes alternative silently; correct first class is D via branch 4 Flag silent first-alternative pick; state first class D with evidence",
+              "topic_ok": true
+            },
+            {
+              "direction_ok": true,
+              "response": "claude",
+              "text": "pipeline_output.json first-alternative pick for 諩 first_match_wins takes alternative silently; correct first class is D via branch 4 Flag silent first-alternative pick; state first class D with evidence",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "high",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F3": {
+          "detection_entries": 2,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT",
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "sync_proposal.patch edits frozen golden 以 entry post-hoc golden edit; freeze governance forbids changing golden so output passes Reject the patch; keep golden frozen",
+              "topic_ok": true
+            },
+            {
+              "direction_ok": true,
+              "response": "claude",
+              "text": "sync_proposal.patch edits frozen golden 以 entry post-hoc golden edit; freeze governance forbids changing golden so output passes Reject the patch; keep golden frozen",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F4": {
+          "detection_entries": 2,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT",
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "system_output_row.json 不 row derived from placeholder ③ placeholder-derived row in qualified set without label; policy requires label and exclusion Flag unlabeled placeholder-derived row; require label and exclude",
+              "topic_ok": true
+            },
+            {
+              "direction_ok": true,
+              "response": "claude",
+              "text": "system_output_row.json 不 row derived from placeholder ③ placeholder-derived row in qualified set without label; policy requires label and exclusion Flag unlabeled placeholder-derived row; require label and exclude",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F5": {
+          "detection_entries": 2,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT",
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "review_claim.json gate claim 27172/27362 = 99.31% wrong denominator 27362; spec universe B0 = 27584 gives 27172/27584 = 98.51% Flag wrong denominator; restate over B0 27584",
+              "topic_ok": true
+            },
+            {
+              "direction_ok": true,
+              "response": "claude",
+              "text": "review_claim.json gate claim 27172/27362 = 99.31% wrong denominator 27362; spec universe B0 = 27584 gives 27172/27584 = 98.51% Flag wrong denominator; restate over B0 27584",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "response_chars": 2216,
+          "response_sha256": "decbdea12fc874678eb2f980ddf5c4edd8390a611b227b42bb1eeab82bbfdc85",
+          "status": "ok:fenced"
+        },
+        "claude": {
+          "response_chars": 2216,
+          "response_sha256": "decbdea12fc874678eb2f980ddf5c4edd8390a611b227b42bb1eeab82bbfdc85",
+          "status": "ok:fenced"
+        }
+      }
+    },
+    "W2": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "status": "missing"
+        },
+        "chatgpt_cross": {
+          "status": "missing"
+        },
+        "claude": {
+          "status": "missing"
+        }
+      }
+    },
+    "W3": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt_blind": {
+          "status": "missing"
+        },
+        "chatgpt_cross": {
+          "status": "missing"
+        },
+        "claude_blind": {
+          "status": "missing"
+        }
+      }
+    }
+  }
+}

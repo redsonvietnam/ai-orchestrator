@@ -1,0 +1,98 @@
+{
+  "critical_tasks": [
+    "F3",
+    "F4",
+    "F5"
+  ],
+  "extraction": {
+    "W1": {
+      "chatgpt": "ok:fenced",
+      "claude": "ok:fenced"
+    },
+    "W2": {
+      "chatgpt": "missing",
+      "chatgpt_cross": "missing",
+      "claude": "missing"
+    },
+    "W3": {
+      "chatgpt_blind": "missing",
+      "chatgpt_cross": "missing",
+      "claude_blind": "missing"
+    }
+  },
+  "final_decisions": {
+    "W1": {
+      "chatgpt": {
+        "F1": "REJECT",
+        "F2": "REJECT",
+        "F3": "REJECT",
+        "F4": "REJECT",
+        "F5": "REJECT"
+      },
+      "claude": {
+        "F1": "REJECT",
+        "F2": "REJECT",
+        "F3": "REJECT",
+        "F4": "REJECT",
+        "F5": "REJECT"
+      }
+    },
+    "W2": {
+      "chatgpt": {},
+      "chatgpt_cross": {},
+      "claude": {}
+    },
+    "W3": {
+      "chatgpt_blind": {},
+      "chatgpt_cross": {},
+      "claude_blind": {}
+    }
+  },
+  "ground_truth_sha256": "dc18e1f6a36047cbb30c98090907a1cceedd958d682fac9323f41f2bb6386b70",
+  "mode": "score",
+  "primary": {
+    "W1": {
+      "critical_fault_missed": 0,
+      "false_accept_rate": 0,
+      "fault_detection_rate": 1,
+      "final_decision_accuracy": 1
+    },
+    "W2": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0,
+      "fault_detection_rate": 0,
+      "final_decision_accuracy": 0
+    },
+    "W3": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0,
+      "fault_detection_rate": 0,
+      "final_decision_accuracy": 0
+    }
+  },
+  "verdict_rules_sha256": "7c1d8523d5605d8080dcff30aa989cc9cefdf39d1fe76ff9449ccd9645ccdb82",
+  "verdicts": {
+    "W1": {
+      "F1": "DETECTED_CORRECT",
+      "F2": "DETECTED_CORRECT",
+      "F3": "DETECTED_CORRECT",
+      "F4": "DETECTED_CORRECT",
+      "F5": "DETECTED_CORRECT"
+    },
+    "W2": {
+      "F1": "MISSED",
+      "F2": "MISSED",
+      "F3": "MISSED",
+      "F4": "MISSED",
+      "F5": "MISSED"
+    },
+    "W3": {
+      "F1": "MISSED",
+      "F2": "MISSED",
+      "F3": "MISSED",
+      "F4": "MISSED",
+      "F5": "MISSED"
+    }
+  },
+  "verifier": "META-WF-V1-verify.mjs-1"
+}

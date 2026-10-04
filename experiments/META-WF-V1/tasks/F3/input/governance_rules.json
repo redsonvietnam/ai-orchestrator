@@ -1,0 +1,7 @@
+{
+  "rule_1_golden_freeze": "# V4-CHOT Dieu kien 1: golden DONG BANG (SHA-256 cua dict, sort_keys, khong khoang trang).",
+  "rule_1_amendment": "# Sua golden = vi pham Dieu kien 1, tru khi ghi changelog + cap nhat hang so nay.",
+  "anchor_spec_rule_v6": "# V6-DECISION (2026-10-03, DONG THUAN ChatGPT + Claude, reconcile [V6-QA..QD]):",
+  "anchor_spec_rule_v9": "# V9-DECISION (2026-10-03, DONG THUAN ChatGPT + Claude, reconcile [V9-Q1/Q2]):",
+  "post_hoc_amendment_must_not_retroactively_pass": true
+}

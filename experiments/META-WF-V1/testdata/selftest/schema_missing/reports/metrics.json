@@ -1,0 +1,75 @@
+{
+  "access_symmetry": {
+    "W2": "UNVERIFIED",
+    "W3": "PASS"
+  },
+  "hashes": {
+    "ground_truth_sha256": "dc18e1f6a36047cbb30c98090907a1cceedd958d682fac9323f41f2bb6386b70",
+    "verdict_rules_sha256": "7c1d8523d5605d8080dcff30aa989cc9cefdf39d1fe76ff9449ccd9645ccdb82",
+    "verifier_output_run2_sha256": "b9c586abf5a8c5eec933b9f90941af28cf6673b675d76c08d7b9355eb95f088f",
+    "verifier_output_sha256": "b9c586abf5a8c5eec933b9f90941af28cf6673b675d76c08d7b9355eb95f088f"
+  },
+  "non_scoring": {
+    "W0": "UNAVAILABLE"
+  },
+  "notes": {
+    "decision_accuracy_normalization": "REJECT_* GT labels normalize to REJECT; final decision correct iff merged decision == REJECT; FLAG_FOR_REWORK and ACCEPT count incorrect. Documented interpretation of frozen prereg vocabulary mismatch; surfaced at GATE_2.",
+    "false_accept_definition": "Automatic rule: merged final decision == ACCEPT => FALSE_ACCEPT. Endorsement without ACCEPT token scored as MISSED (documented limitation).",
+    "gt_isolation": "procedural, not cryptographic/security isolation (ACCEPT_PROCEDURAL_FOR_V1)",
+    "token_volume": "NOT_PROVIDER_TOKEN_COUNT"
+  },
+  "primary": {
+    "W1": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0.0,
+      "fault_detection_rate": 0.0,
+      "final_decision_accuracy": 0.0
+    },
+    "W2": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0.0,
+      "fault_detection_rate": 0.0,
+      "final_decision_accuracy": 0.0
+    },
+    "W3": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0.0,
+      "fault_detection_rate": 0.0,
+      "final_decision_accuracy": 0.0
+    }
+  },
+  "reproducibility": true,
+  "secondary": {
+    "W1": {
+      "artifact_access_rate": 0.0,
+      "claude_calls": 0,
+      "human_interventions": null,
+      "model_calls": 0,
+      "raw_character_volume_proxy": 0,
+      "rounds": 2,
+      "unsupported_claim_rate": 0.0,
+      "wall_clock_seconds": null
+    },
+    "W2": {
+      "artifact_access_rate": 0.0,
+      "claude_calls": 0,
+      "human_interventions": null,
+      "model_calls": 0,
+      "raw_character_volume_proxy": 0,
+      "rounds": 3,
+      "unsupported_claim_rate": 0.0,
+      "wall_clock_seconds": null
+    },
+    "W3": {
+      "artifact_access_rate": 0.0,
+      "claude_calls": 1,
+      "human_interventions": 0,
+      "model_calls": 3,
+      "raw_character_volume_proxy": 379,
+      "rounds": 3,
+      "unsupported_claim_rate": 0.0,
+      "wall_clock_seconds": 300.0
+    }
+  },
+  "verifier_agreement_rate": 1.0
+}

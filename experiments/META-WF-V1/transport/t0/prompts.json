@@ -1,0 +1,10 @@
+{
+  "canary": {
+    "sha256": "10e893c75a91a8864a356ebdd78e9b384990cbf5347822a933f7643f83998e42",
+    "chars": 88
+  },
+  "f5": {
+    "sha256": "6fb3522d77e9feb4938d93cb808b6180efefed523df271e1e8dfb49780fa3265",
+    "chars": 1893
+  }
+}

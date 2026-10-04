@@ -1,0 +1,306 @@
+{
+  "verifier_agreement": {
+    "cells": [
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F1",
+        "verifier": "MISSED",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F2",
+        "verifier": "MISSED",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F3",
+        "verifier": "MISSED",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F4",
+        "verifier": "MISSED",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F5",
+        "verifier": "MISSED",
+        "workflow": "W1"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F1",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F2",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F3",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F4",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F5",
+        "verifier": "MISSED",
+        "workflow": "W2"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F1",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F2",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F3",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F4",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      },
+      {
+        "agree": true,
+        "scorer": "MISSED",
+        "task": "F5",
+        "verifier": "MISSED",
+        "workflow": "W3"
+      }
+    ],
+    "rate": 1.0
+  },
+  "workflows": {
+    "W1": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "status": "missing"
+        },
+        "claude": {
+          "status": "missing"
+        }
+      }
+    },
+    "W2": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "status": "missing"
+        },
+        "chatgpt_cross": {
+          "status": "missing"
+        },
+        "claude": {
+          "status": "missing"
+        }
+      }
+    },
+    "W3": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt_blind": {
+          "response_chars": 75,
+          "response_sha256": "72870196553864a5ff7ddd834d74b47bfca3a91669a989c524b15bca85c7882f",
+          "status": "schema_missing"
+        },
+        "chatgpt_cross": {
+          "response_chars": 56,
+          "response_sha256": "d90773d2b426412c04ce39b52427481db0aefd000a190a49216bc7ec3154f9a3",
+          "status": "schema_missing"
+        },
+        "claude_blind": {
+          "response_chars": 54,
+          "response_sha256": "1d4ec4b0a730ce244cd940d864c27712f3dd48e008c408d0cc4d18ead92141f2",
+          "status": "schema_missing"
+        }
+      }
+    }
+  }
+}

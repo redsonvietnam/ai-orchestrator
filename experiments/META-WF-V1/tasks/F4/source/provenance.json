@@ -1,0 +1,33 @@
+{
+  "input/ids_line.txt": {
+    "origin": "real",
+    "refs": [
+      "ids.txt"
+    ]
+  },
+  "input/placeholder_policy.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py ANCHOR_GRAMMAR_SPEC atomic_placeholder_rule",
+      "PLACEHOLDER_CHARS"
+    ]
+  },
+  "input/system_output_row.json": {
+    "origin": "injected_row",
+    "refs": [
+      "secondary derived from placeholder leaf, label stripped"
+    ]
+  },
+  "input/report_quality_flags.json": {
+    "origin": "real",
+    "refs": [
+      "cache_hanstroke/report.md"
+    ]
+  },
+  "raw/placeholder_composite_ids_lines.txt": {
+    "origin": "real",
+    "refs": [
+      "ids.txt"
+    ]
+  }
+}

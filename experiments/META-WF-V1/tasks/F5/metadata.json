@@ -1,0 +1,12 @@
+{
+  "task_id": "F5",
+  "title": "gate claim denominator review",
+  "files": [
+    "input/spec_gate.json",
+    "input/full_report_excerpt.json",
+    "input/review_claim.json",
+    "raw/report_source_lines.txt",
+    "source/provenance.json"
+  ],
+  "ground_truth": "prereg/GROUND_TRUTH.yaml (not delivered to reviewers)"
+}

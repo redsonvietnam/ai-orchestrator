@@ -1,0 +1,6 @@
+{
+  "GATE_THRESHOLD_PCT": 95.0,
+  "B0_universe": 27584,
+  "universe_definition": "B0 = U+4E00..9FFF (20992) + Ext-A U+3400..4DBF (6592)",
+  "gate_evaluated_over": "full B0 universe"
+}

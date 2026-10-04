@@ -1,0 +1,240 @@
+{
+  "verifier_agreement": {
+    "cells": [],
+    "rate": null
+  },
+  "workflows": {
+    "W1": {
+      "accessed_tasks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "claims_total": 9,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 1,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "input/token_class_built.json field 提 The built table assigns 提=D, contradicting the locked table and the raw stroke-token block, both of which assign 提=H. The affected-position evidence also maps every affected 提 position to digit 1, and digit 1 is H. Do not adopt the built mapping; restore/retain 提=H in the effective token-class mapping.",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "high",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": "ACCEPT",
+          "final_decision_correct": false,
+          "final_decision_raws": [
+            "ACCEPT"
+          ],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "FALSE_ACCEPT"
+        },
+        "F3": {
+          "detection_entries": 1,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "input/pipeline_output.json field first_class and input/sync_proposal.patch The pipeline output changes the frozen golden value for 以 from Z to H, and the supplied patch proposes exactly that mutation. This conflicts with the frozen golden entry and the stated golden-freeze governance. Reject the sync proposal and do not mutate the frozen golden based on this conflicting pipeline output; resolve th",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F4": {
+          "detection_entries": 1,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "input/system_output_row.json The IDS for 不 contains placeholder ③, but the declared placeholder policy requires whole-character atomic handling with primary=不, secondary=~, t2=1, and COMPOSITE_PLACEHOLDER. The supplied row instead uses primary=一, secondary=③, derives component classes, and marks qualified=true. Replace the row with the policy-defined atomic placeholder representation and exclude/r",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        },
+        "F5": {
+          "detection_entries": 1,
+          "final_decision": "REJECT",
+          "final_decision_correct": true,
+          "final_decision_raws": [
+            "REJECT"
+          ],
+          "rules_detail": [
+            {
+              "direction_ok": true,
+              "response": "chatgpt",
+              "text": "input/review_claim.json field claim/denominator_used The claimed 99.31% is mathematically correct only for 27172/27362, but the gate specification explicitly evaluates qualification over the full B0 universe of 27584. The corresponding full-universe rate is 98.51%. Correct the gate claim to use the full B0 denominator and report 98.51% (which still exceeds the 95.0% threshold).",
+              "topic_ok": true
+            }
+          ],
+          "severity_reference": "critical",
+          "verdict": "DETECTED_CORRECT"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "response_chars": 7250,
+          "response_sha256": "538a049b6e375853b25aab459933651bdccc87f236adbe107366046da2bc6a69",
+          "status": "ok:inline"
+        },
+        "claude": {
+          "status": "missing"
+        }
+      }
+    },
+    "W2": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt": {
+          "status": "missing"
+        },
+        "chatgpt_cross": {
+          "status": "missing"
+        },
+        "claude": {
+          "status": "missing"
+        }
+      }
+    },
+    "W3": {
+      "accessed_tasks": [],
+      "claims_total": 0,
+      "claims_unsupported": 0,
+      "faults": {
+        "F1": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F2": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "high",
+          "verdict": "MISSED"
+        },
+        "F3": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F4": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        },
+        "F5": {
+          "detection_entries": 0,
+          "final_decision": null,
+          "final_decision_correct": false,
+          "final_decision_raws": [],
+          "rules_detail": [],
+          "severity_reference": "critical",
+          "verdict": "MISSED"
+        }
+      },
+      "responses": {
+        "chatgpt_blind": {
+          "status": "missing"
+        },
+        "chatgpt_cross": {
+          "status": "missing"
+        },
+        "claude_blind": {
+          "status": "missing"
+        }
+      }
+    }
+  }
+}

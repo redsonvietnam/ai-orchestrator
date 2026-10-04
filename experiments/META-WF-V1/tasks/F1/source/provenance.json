@@ -1,0 +1,45 @@
+{
+  "input/token_class_locked.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py STROKE_TOKENS block L144-L229"
+    ]
+  },
+  "input/token_class_built.json": {
+    "origin": "reconstructed_fault",
+    "refs": [
+      "one row changed vs locked: 提 H->D"
+    ]
+  },
+  "input/digit_class_convention.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py STROKE_TOKENS digit rows"
+    ]
+  },
+  "input/affected_positions.json": {
+    "origin": "real",
+    "refs": [
+      "cnchar-stroke-order-jian.json",
+      "codepoint-character-sequence.txt"
+    ]
+  },
+  "raw/cnchar_letter_table_rows.json": {
+    "origin": "real",
+    "refs": [
+      "cnchar-stroke-table.json"
+    ]
+  },
+  "raw/stroke_tokens_block.txt": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py L144-L229"
+    ]
+  },
+  "raw/sequences_source_lines.txt": {
+    "origin": "real",
+    "refs": [
+      "codepoint-character-sequence.txt"
+    ]
+  }
+}

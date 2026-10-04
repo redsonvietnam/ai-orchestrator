@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "scenarios": [
+    {
+      "scenario": "perfect",
+      "workflow": "W1",
+      "agreement": 1.0,
+      "reproducibility": true,
+      "verdicts": {
+        "W1": {
+          "F1": "DETECTED_CORRECT",
+          "F2": "DETECTED_CORRECT",
+          "F3": "DETECTED_CORRECT",
+          "F4": "DETECTED_CORRECT",
+          "F5": "DETECTED_CORRECT"
+        },
+        "W2": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        },
+        "W3": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        }
+      }
+    },
+    {
+      "scenario": "accept_all",
+      "workflow": "W2",
+      "agreement": 1.0,
+      "reproducibility": true,
+      "verdicts": {
+        "W1": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        },
+        "W2": {
+          "F1": "FALSE_ACCEPT",
+          "F2": "FALSE_ACCEPT",
+          "F3": "FALSE_ACCEPT",
+          "F4": "FALSE_ACCEPT",
+          "F5": "FALSE_ACCEPT"
+        },
+        "W3": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        }
+      }
+    },
+    {
+      "scenario": "schema_missing",
+      "workflow": "W3",
+      "agreement": 1.0,
+      "reproducibility": true,
+      "verdicts": {
+        "W1": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        },
+        "W2": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        },
+        "W3": {
+          "F1": "MISSED",
+          "F2": "MISSED",
+          "F3": "MISSED",
+          "F4": "MISSED",
+          "F5": "MISSED"
+        }
+      }
+    }
+  ],
+  "checks": [
+    "expected matrices",
+    "cross-impl agreement 15/15",
+    "verify.mjs byte-identical rerun",
+    "score.py byte-identical rerun",
+    "reproducibility true",
+    "access_symmetry PASS",
+    "W0 UNAVAILABLE"
+  ]
+}

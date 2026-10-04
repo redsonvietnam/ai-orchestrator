@@ -1,0 +1,27 @@
+{
+  "input/spec_gate.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py GATE_THRESHOLD_PCT",
+      "cache_hanstroke/report.md"
+    ]
+  },
+  "input/full_report_excerpt.json": {
+    "origin": "real",
+    "refs": [
+      "cache_hanstroke/report.md"
+    ]
+  },
+  "input/review_claim.json": {
+    "origin": "injected_claim",
+    "refs": [
+      "wrong denominator over real report numbers"
+    ]
+  },
+  "raw/report_source_lines.txt": {
+    "origin": "real",
+    "refs": [
+      "cache_hanstroke/report.md verbatim lines"
+    ]
+  }
+}

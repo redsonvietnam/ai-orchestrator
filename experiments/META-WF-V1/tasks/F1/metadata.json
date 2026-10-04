@@ -1,0 +1,15 @@
+{
+  "task_id": "F1",
+  "title": "stroke token mapping table - build verification",
+  "files": [
+    "input/token_class_locked.json",
+    "input/token_class_built.json",
+    "input/digit_class_convention.json",
+    "input/affected_positions.json",
+    "raw/cnchar_letter_table_rows.json",
+    "raw/stroke_tokens_block.txt",
+    "raw/sequences_source_lines.txt",
+    "source/provenance.json"
+  ],
+  "ground_truth": "prereg/GROUND_TRUTH.yaml (not delivered to reviewers)"
+}

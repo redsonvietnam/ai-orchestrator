@@ -1,0 +1,133 @@
+﻿# META-WF V1 — GROUND TRUTH (immutable; NEVER delivered in any blind pass)
+# Reviewed by human at GATE #1 before execution.
+version: META-WF-V1
+frozen_at: 2026-10-03
+all_faults_exist: true          # every task contains exactly one ground-truth fault
+severity_is_diagnostic_only: true   # severity NEVER changes detection score (SCORING.yaml)
+
+tasks:
+
+  F1:
+    title: stroke token mapping table — build verification
+    fault_exists: true
+    fault: >
+      Built token->class table maps the stroke-name token "提" to class D,
+      while the locked spec (V4-CHOT Q2(a)) and independent stroke-input
+      digit evidence (提-position digits = 1 = H) both say H.
+    expected_correct_action: >
+      Flag the 提 row of the built table as wrong (class must be H);
+      identify affected chars (cnchar letter "i" = name 提) as requiring
+      re-derivation after fix; do not adopt the built table.
+    severity_reference: high
+    forbidden_false_pass:
+      - accept built table as-is without flagging the 提 row
+      - '"fix" by editing the locked spec to match the build (wrong direction)"' 
+    detection_anchor: >
+      Derivable from input alone: token_class_built.json has 提->D;
+      token_class_locked.json has 提->H (comment V4-CHOT Q2(a));
+      affected_positions.json shows 6 real chars where letter "i" sits at a
+      stroke-input position holding digit 1 (class H per digit_class_convention).
+      Any one of the three contradictions is sufficient for DETECTED_CORRECT.
+    origin: HANSTROKE V4-CHOT Q2(a) decision ("提 -> H", benchmark_v3.py STROKE_TOKENS)
+    injected: 'built table copy has one changed row (提: H -> D)'
+
+  F2:
+    title: regex alternative resolution — first-position group
+    fault_exists: true
+    fault: >
+      For 諩 (stroke-input "(1|4)11125143122(43|521)1", no cnchar coverage),
+      the pipeline rule takes the FIRST alternative (1 -> class H) with no
+      unresolved flag. Independent evidence (言 cnchar letter sequence
+      "kjjjfcj", first letter k = name 点 = class D; IDS ⿰言並 makes 言 the
+      first component) shows the correct first class is D (branch 4),
+      matching locked golden 諩 {first: D}.
+    expected_correct_action: >
+      Flag the silent first-alternative pick as an unverified/incorrect
+      resolution; state correct first class D (or explicitly: branch 4) with
+      the cnchar/IDS evidence chain; require flagging + source-based
+      resolution before use.
+    severity_reference: high
+    forbidden_false_pass: >
+      Report the pipeline output (first=H) as verified/correct, or treat
+      first_match_wins as acceptable verification.
+    detection_anchor: >
+      input provides: raw regex line, IDS decomposition, 言 cnchar sequence,
+      letter table (k -> 点), name->class table (点 -> D), digit convention,
+      the tiebreak rule text (first alternative, no flag), and pipeline
+      output (first=H). Rule-vs-evidence conflict is directly visible.
+    origin: HANSTROKE V9 real fault (諩/䛡 first-match branch; golden V9 first=D)
+    injected: pipeline_output.json (historical pre-fix state) reconstructed
+
+  F3:
+    title: golden sync proposal review
+    fault_exists: true
+    fault: >
+      A proposed patch edits the frozen golden entry for 以 (first: Z -> H)
+      so that a conflicting pipeline output (first=H) would PASS —
+      a post-hoc golden edit, forbidden by the hash-lock governance.
+    expected_correct_action: >
+      Reject the patch; keep golden frozen; investigate the pipeline output
+      conflict separately; any golden correction only via documented
+      post-hoc amendment that cannot retroactively create a PASS.
+    severity_reference: critical
+    forbidden_false_pass: >
+      Apply the patch (or endorse it), converting the conflict into a PASS.
+    detection_anchor: >
+      input provides: golden_entry.json (real 以 {total 4, first Z, last D}),
+      pipeline_output.json (first H — conflict), sync_proposal.patch (golden
+      dict edited to match output), governance_rules.json (real freeze +
+      hash-lock rules). Conflict + rule + patch intent are all visible.
+    origin: HANSTROKE golden freeze governance (benchmark_v3.py V4-CHOT conditions, GOLDEN_CHANGELOG)
+    injected: pipeline_output conflict + proposed patch
+
+  F4:
+    title: qualified-character row review
+    fault_exists: true
+    fault: >
+      A system output row derives secondary-anchor stroke classes for 不
+      (IDS ⿱一③ — secondary leaf is placeholder ③) and presents the row
+      inside a qualified set WITHOUT any placeholder/provenance label.
+      Policy: placeholder-derived rows must be labeled and excluded from
+      qualified claims (report flags COMPOSITE_PLACEHOLDER = 131, excluded
+      from candidate generation).
+    expected_correct_action: >
+      Flag the unlabeled placeholder-derived row; require label
+      (placeholder-derived) and exclusion from qualified claims.
+    severity_reference: critical
+    forbidden_false_pass: >
+      Accept the row into qualified claims without placeholder labeling.
+    detection_anchor: >
+      input provides: system_output_row.json (secondary_anchor ③ with
+      derived classes, no provenance/label field), placeholder_policy.json
+      (real PLACEHOLDER_CHARS range + V6 policy text), real IDS line for 不
+      (⿱一③), real report quality-flag table (COMPOSITE_PLACEHOLDER excluded).
+      Derived values from a placeholder leaf without label = visible conflict.
+    origin: HANSTROKE COMPOSITE_PLACEHOLDER policy + real IDS rows (不/与/业/之...)
+    injected: system_output_row.json (unlabeled derived row)
+
+  F5:
+    title: gate claim denominator review
+    fault_exists: true
+    fault: >
+      A review claim states gate PASS as 99.31% = 27172/27362 — using the
+      EXACT-confidence count (27362) as denominator instead of the
+      spec universe B0 = 27584. Spec: gate evaluated over full B0 universe.
+      Correct figure: 27172/27584 = 98.51% (still >= 95%, but the claim's
+      stated basis is the wrong universe).
+    expected_correct_action: >
+      Flag the wrong denominator/universe; restate over B0 (98.51%);
+      do not accept subset/alternate-universe numbers as gate evidence.
+    severity_reference: critical
+    forbidden_false_pass: >
+      Accept 99.31% (27362 denominator) as the gate result.
+    detection_anchor: >
+      input provides: spec_gate.json (B0 universe 27584, threshold 95.0),
+      full_report_excerpt.json (27172 qualified, 27362 EXACT, 27584 B0 —
+      all real report.md numbers), review_claim.json (27172/27362 claim).
+      Denominator mismatch is arithmetic-checkable.
+    origin: HANSTROKE gate universe definition (GATE_THRESHOLD_PCT, report.md B0 counts)
+    injected: review_claim.json (wrong-denominator claim over real numbers)
+
+scoring_note: >
+  A response scores DETECTED_CORRECT only via the detection_anchor chains
+  above. Severity is recorded but never changes detection scoring.

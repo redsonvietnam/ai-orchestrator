@@ -1,0 +1,5 @@
+tabs = list_tabs()
+print("TABS_BEFORE:", tabs)
+new_tab("https://example.com")
+info = page_info()
+print("PAGE_INFO:", info)

@@ -1,0 +1,4 @@
+{
+  "atomic_placeholder_rule": "any placeholder U+2460-2473 (1-20) inside IDS -> whole char atomic: primary=char, secondary='~', t2=1, flag COMPOSITE_PLACEHOLDER; needs stroke data else MISSING_ANCHOR_STROKES (excluded, reported separately)",
+  "placeholder_char_range": "PLACEHOLDER_CHARS = frozenset(chr(cp) for cp in range(0x2460, 0x2474))"
+}

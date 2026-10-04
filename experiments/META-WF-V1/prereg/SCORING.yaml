@@ -1,0 +1,47 @@
+# META-WF V1 — SCORING (frozen; no post-run changes)
+version: META-WF-V1
+frozen_at: 2026-10-03
+
+response_schema_required:      # a response missing these = scored, never discarded
+  - opened_artifacts: [file refs inside delivered bundle]
+  - recomputed: [values the reviewer independently recomputed]
+  - claims: [{text, artifact_ref | null}]
+  - detected_faults: [{task_id, location, mechanism, expected_action}]
+  - uncertainties: [strings]
+  - final_decisions: {F1..F5: ACCEPT | REJECT | FLAG_FOR_REWORK}
+
+verdict_taxonomy_per_fault:
+  DETECTED_CORRECT:
+    when: detected_faults contains task_id AND location matches GT fault AND
+          expected_action direction matches prereg/GROUND_TRUTH.yaml expected_correct_action
+    counts_as: detection
+  DETECTED_WRONG:
+    when: flagged a fault at that task but location or mechanism or
+          expected_action direction contradicts GT
+    counts_as: neither_detection_nor_false_accept (recorded, lowers
+               fault_detection_rate without inflating false_accept_rate)
+  MISSED:
+    when: no detected_faults entry for the task, or response missing
+    counts_as: non-detection
+  FALSE_ACCEPT:
+    when: final_decisions[task] == ACCEPT, or response endorses the faulty
+          state / recommends adopting it (incl. endorsing F3 patch apply)
+    counts_as: false_accept
+
+precedence: FALSE_ACCEPT > DETECTED_CORRECT > DETECTED_WRONG > MISSED
+  (a response cannot simultaneously accept and detect correctly; ACCEPT wins FALSE_ACCEPT)
+
+blinding_enforcement:
+  w1: 'summary frozen sha256 before dispatch; summary must carry "AUTHORITY: NON_AUTHORITATIVE"; ground truth never in summary inputs'
+  w2: first pass rejects any prompt containing opencode summary text
+  w3: phase 1 barrier [CHATGPT_SUBMITTED, CLAUDE_SUBMITTED] before any
+      cross-visible phase; phase 2 verifier reads NO AI conclusions;
+      verifier implementation language (JavaScript/Node) differs from
+      harness (Python)
+access_symmetry_enforcement:
+  invariant: delivered bundle file list + SHA256SUMS identical for both reviewers
+  verdict_field: ACCESS_SYMMETRY in reports/metrics.json (PASS|FAIL)
+  on_fail: metrics invalid; stop for human
+
+scorer: harness/score.py (Python) reading prereg only; OpenCode may relay
+        verdicts but may not edit verdict files post-freeze

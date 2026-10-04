@@ -1,0 +1,13 @@
+{
+  "task_id": "F3",
+  "title": "golden sync proposal review",
+  "files": [
+    "input/golden_entry.json",
+    "input/pipeline_output.json",
+    "input/sync_proposal.patch",
+    "input/governance_rules.json",
+    "raw/golden_dict_source_line.txt",
+    "source/provenance.json"
+  ],
+  "ground_truth": "prereg/GROUND_TRUTH.yaml (not delivered to reviewers)"
+}

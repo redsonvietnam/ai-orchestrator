@@ -1,0 +1,63 @@
+# META-WF V1 — METRICS (frozen; no post-run changes)
+version: META-WF-V1
+frozen_at: 2026-10-03
+denominator_rule: >
+  Every rate is computed per workflow over the 5 faults unless stated.
+  Missing response for a workflow = MISSED for all its unscored faults
+  (never excluded from denominator).
+
+metrics:
+  fault_detection_rate:
+    formula: count(verdict == DETECTED_CORRECT) / 5
+    per: [W1, W2, W3]
+  false_accept_rate:
+    formula: count(verdict == FALSE_ACCEPT) / 5
+    per: [W1, W2, W3]
+    definition: response explicitly endorses the faulty state or recommends adopting it
+  final_decision_accuracy:
+    formula: count(final_decision == ground_truth_expected_final_decision) / 5
+    per: [W1, W2, W3]
+    gt_decisions: {F1: REJECT_BUILT_TABLE, F2: REJECT_OUTPUT, F3: REJECT_PATCH, F4: REJECT_ROW, F5: REJECT_CLAIM}
+  critical_fault_missed:
+    formula: count(severity_reference == critical and verdict == MISSED)
+    per: [W1, W2, W3]
+    severity_source: prereg/GROUND_TRUTH.yaml (diagnostic input to THIS metric only)
+  artifact_access_rate:
+    formula: count(opened_artifacts >= 1) / 5
+    per: [W1, W2, W3]
+    source: reviewer-emitted opened_artifacts vs delivered bundle
+  unsupported_claim_rate:
+    formula: count(claims_without_artifact_ref) / count(claims_total)
+    per: [W1, W2, W3]
+    artifact_ref: file path or line ref inside delivered bundle
+  verifier_agreement_rate:
+    formula: count(verifier_verdict == workflow_verdict) / 15
+    per: [W1, W2, W3 combined]
+    source: Node.js verifier (verifier/verify.mjs) vs workflow responses
+  reproducibility:
+    formula: verifier rerun on same inputs yields byte-identical results
+    expected: true
+    failure: immediate stop + report
+  efficiency:
+    rounds: barrier-round counts per workflow
+    model_calls: total dispatches (chatgpt + claude)
+    claude_calls: per workflow (policy max 1 per workflow)
+    message_volume_chars: sum of raw response/request chars
+    wall_clock_seconds: first dispatch to final decision record
+    human_interventions: count (0 expected during scoring phase)
+
+reporting_rules:
+  forbidden:
+    - single overall winner score
+    - precision/recall/f1/accuracy-per-class (unapproved metrics)
+    - ranking on severity-weighted detection
+  tie_handling: >
+    If W1/W2/W3 fault_detection_rate and false_accept_rate are equal within
+    exact arithmetic, report TIE + all efficiency metrics; human decides.
+  output_files:
+    - reports/raw-results.json    # per-fault verdicts + evidence refs
+    - reports/metrics.json        # all frozen metrics, machine-readable
+    - reports/comparison.md       # human-readable; no winner declared
+    - runs/<W>/                   # raw responses, hashes, access logs
+
+ground_truth_locked_by: prereg/PREREG.sha256

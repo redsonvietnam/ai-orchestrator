@@ -1,0 +1,70 @@
+# META-WF V1 — GATE 1 ADDENDUM (O-A remediation, human-approved)
+# Amends only the task_sums anchors for F2/F3/F5 in GATE1_APPROVAL.yaml.
+# prereg/GROUND_TRUTH/METRICS/SCORING/TASKS: NOT touched (hashes unchanged).
+parent: GATE1_APPROVAL.yaml
+approved_decision: O-A
+scope: >
+  Create raw/ for F2, F3, F5 with real verbatim source excerpts already
+  represented by the evidence; recompute SHA256SUMS for those tasks;
+  update task_sums anchors here. F1/F4 unchanged. Fixture semantics and
+  fault truth unchanged (input/source files byte-identical except
+  provenance.json gaining raw/ entries).
+
+changed_task_sums:
+  F2: 120f0afe1e8454cfdd3214cbf1bf2388e256341cfc1482ccd3981c9b58af5808
+  F3: c8fab42098b9866dd9956009779ddfeb1266ce85d0103be0c5f1288daa0bcf7f
+  F5: 0f51c32ec2b86263f567ab5c5016fa334f726921121b9c93729bf2a5cc8446e2
+unchanged_task_sums:   # confirmed byte-identical to GATE1_APPROVAL anchors
+  F1: fdb9d665b660a96dbdf6b38decd41907e8260cd93b8bd083d0f8afb32847a627
+  F4: 70b0e3d459b9427fffd200fb89f2cb6a8721426c270127ba23dea5562f401d3c
+
+raw_added:
+  F2:
+    - raw/sequence_source_lines.txt   # verbatim U+8AE9 + U+8A00 from codepoint-character-sequence.txt
+    - raw/ids_source_line.txt         # verbatim U+8AE9 from ids.txt
+    - raw/cnchar_jian_yan_source.txt  # verbatim 言 entry from cnchar-stroke-order-jian.json
+  F3:
+    - raw/golden_dict_source_line.txt # verbatim 以 line from benchmark_v3.py GOLDEN_ANCHORS_INLINE
+  F5:
+    - raw/report_source_lines.txt     # verbatim B0/qualified/EXACT lines from report.md
+
+checker_fix:
+  file: harness/prerun_invariants.py
+  reason: old-path scan matched its own pattern definition (self-match)
+  fix: exclude checker file from scan + construct pattern non-contiguously
+  note: no real experiment artifact altered to hide the self-match
+
+prereg_task_sums_read_rule: >
+  harness/prerun_invariants.py reads task_sums from this addendum when
+  present (changed tasks), else from GATE1_APPROVAL.yaml.
+
+prereg_syntax_fix:
+  gate: human approved (APPROVE patch)
+  date: 2026-10-03
+  scope: >
+    10 syntax-only line patches (TASKS.yaml 7, GROUND_TRUTH.yaml 2,
+    SCORING.yaml 1). Plain-scalar colon / malformed-quote YAML defects
+    discovered by pyyaml during verifier build. Semantic content intent
+    unchanged: every patched line's original text preserved (verified by
+    script assertion + pyyaml.safe_load + semantic spot checks).
+  historical_anchors: >
+    GATE1_APPROVAL.yaml freeze_hashes_at_approval retained verbatim as the
+    pre-fix historical record; never rewritten. This block supersedes those
+    prereg hash anchors for verification only.
+  new_hashes:
+    prereg_file_sha256: a75cdd175b695cfa4a21419dbb845927d10f466aed5776aec9dc08cb5bc7eeb3
+    ground_truth_sha256: dc18e1f6a36047cbb30c98090907a1cceedd958d682fac9323f41f2bb6386b70
+    tasks_yaml_sha256: 1a93ca4602902c32e8e944bee33257812341b4ff3de5e00a1b9aed254834e503
+    metrics_sha256: 04bfd442a34140a9877d6581c122a3f8884c57ac99c198348604f9dc07d60539
+    scoring_sha256: 5d6fd7701fd7f9e0326e2c02f3ebb0418e9cdcc763888c433017227da46d8e17
+  not_touched:
+    - METRICS.yaml content (hash unchanged: proof of zero content change)
+    - gate thresholds, golden hash, task definitions, scoring logic
+  verification:
+    - pyyaml.safe_load passes for TASKS / GROUND_TRUTH / SCORING / METRICS
+    - 'semantic spot checks: F1 forbidden list, F1 injected, fault_corpus F1, inputs_each (list-of-3), SCORING w1 string all byte-identical to intent'
+    - apply_prereg_syntax_fix.py idempotent (re-run skips applied patches)
+  checker_rule: >
+    harness/prerun_invariants.py reads prereg hash anchors from
+    prereg_syntax_fix.new_hashes when present (same override mechanism as
+    task_sums), falling back to GATE1_APPROVAL anchors.

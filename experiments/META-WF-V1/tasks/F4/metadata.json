@@ -1,0 +1,13 @@
+{
+  "task_id": "F4",
+  "title": "qualified-character row review",
+  "files": [
+    "input/ids_line.txt",
+    "input/placeholder_policy.json",
+    "input/system_output_row.json",
+    "input/report_quality_flags.json",
+    "raw/placeholder_composite_ids_lines.txt",
+    "source/provenance.json"
+  ],
+  "ground_truth": "prereg/GROUND_TRUTH.yaml (not delivered to reviewers)"
+}

@@ -1,0 +1,16 @@
+{
+  "provider": "claude",
+  "prompt": "f5",
+  "prompt_sha256_expected": "6fb3522d77e9feb4938d93cb808b6180efefed523df271e1e8dfb49780fa3265",
+  "checks": {
+    "prompt_fidelity": true,
+    "session_identity": true,
+    "response_extraction": true,
+    "fail_loud": true
+  },
+  "status": "ok",
+  "fail_reasons": [],
+  "thread_url": "https://claude.ai/chat/8f292e1f-5ec2-4f18-bd8e-105bf5c7acf8",
+  "prompt_sha256": "6fb3522d77e9feb4938d93cb808b6180efefed523df271e1e8dfb49780fa3265",
+  "response_sha256": "4d679bb99253fd77910eabb0032f60fef7d04ef9dc8a045572aff431f22fd461"
+}

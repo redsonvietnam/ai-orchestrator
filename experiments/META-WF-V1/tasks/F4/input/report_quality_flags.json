@@ -1,0 +1,4 @@
+{
+  "excerpt_markdown": "### Data Quality Flags Excluded from Candidate Generation\n\n| Quality Flag | Count |\n|---|---|\n| `SELF_ANCHOR_NO_COMPONENT` | 34 |\n| `MISSING_ANCHOR_STROKES` | 412 |\n| `COMPOSITE_PLACEHOLDER` | 131 |\n| `AMBIGUOUS_ANCHOR` | 2704 |\n| `AMBIGUOUS_SECONDARY_ANCHOR` | 675 |\n| `VARIANT_ORDER` | 3 |",
+  "note": "verbatim excerpt from full benchmark report"
+}

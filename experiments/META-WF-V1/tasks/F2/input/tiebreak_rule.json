@@ -1,0 +1,4 @@
+{
+  "rule": "when the first/last stroke group has regex alternatives and the character has no cnchar letter sequence, take the first alternative",
+  "flag_when_unresolved": false
+}

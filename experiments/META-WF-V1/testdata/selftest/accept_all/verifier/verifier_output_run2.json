@@ -1,0 +1,104 @@
+{
+  "critical_tasks": [
+    "F3",
+    "F4",
+    "F5"
+  ],
+  "extraction": {
+    "W1": {
+      "chatgpt": "missing",
+      "claude": "missing"
+    },
+    "W2": {
+      "chatgpt": "ok:fenced",
+      "chatgpt_cross": "ok:fenced",
+      "claude": "ok:fenced"
+    },
+    "W3": {
+      "chatgpt_blind": "missing",
+      "chatgpt_cross": "missing",
+      "claude_blind": "missing"
+    }
+  },
+  "final_decisions": {
+    "W1": {
+      "chatgpt": {},
+      "claude": {}
+    },
+    "W2": {
+      "chatgpt": {
+        "F1": "ACCEPT",
+        "F2": "ACCEPT",
+        "F3": "ACCEPT",
+        "F4": "ACCEPT",
+        "F5": "ACCEPT"
+      },
+      "chatgpt_cross": {
+        "F1": "ACCEPT",
+        "F2": "ACCEPT",
+        "F3": "ACCEPT",
+        "F4": "ACCEPT",
+        "F5": "ACCEPT"
+      },
+      "claude": {
+        "F1": "ACCEPT",
+        "F2": "ACCEPT",
+        "F3": "ACCEPT",
+        "F4": "ACCEPT",
+        "F5": "ACCEPT"
+      }
+    },
+    "W3": {
+      "chatgpt_blind": {},
+      "chatgpt_cross": {},
+      "claude_blind": {}
+    }
+  },
+  "ground_truth_sha256": "dc18e1f6a36047cbb30c98090907a1cceedd958d682fac9323f41f2bb6386b70",
+  "mode": "score",
+  "primary": {
+    "W1": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0,
+      "fault_detection_rate": 0,
+      "final_decision_accuracy": 0
+    },
+    "W2": {
+      "critical_fault_missed": 0,
+      "false_accept_rate": 1,
+      "fault_detection_rate": 0,
+      "final_decision_accuracy": 0
+    },
+    "W3": {
+      "critical_fault_missed": 3,
+      "false_accept_rate": 0,
+      "fault_detection_rate": 0,
+      "final_decision_accuracy": 0
+    }
+  },
+  "verdict_rules_sha256": "7c1d8523d5605d8080dcff30aa989cc9cefdf39d1fe76ff9449ccd9645ccdb82",
+  "verdicts": {
+    "W1": {
+      "F1": "MISSED",
+      "F2": "MISSED",
+      "F3": "MISSED",
+      "F4": "MISSED",
+      "F5": "MISSED"
+    },
+    "W2": {
+      "F1": "FALSE_ACCEPT",
+      "F2": "FALSE_ACCEPT",
+      "F3": "FALSE_ACCEPT",
+      "F4": "FALSE_ACCEPT",
+      "F5": "FALSE_ACCEPT"
+    },
+    "W3": {
+      "F1": "MISSED",
+      "F2": "MISSED",
+      "F3": "MISSED",
+      "F4": "MISSED",
+      "F5": "MISSED"
+    }
+  },
+  "verifier": "META-WF-V1-verify.mjs-1"
+}

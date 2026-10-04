@@ -1,0 +1,1 @@
+    "以": {"codepoint": "U+4EE5", "total": 4, "first": "Z", "last": "D"},  # V4-CHOT ADD: 竖提->Z test (cnchar hksk)

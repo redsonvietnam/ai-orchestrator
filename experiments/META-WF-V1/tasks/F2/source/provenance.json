@@ -1,0 +1,63 @@
+{
+  "input/stroke_input_regex.txt": {
+    "origin": "real",
+    "refs": [
+      "codepoint-character-sequence.txt"
+    ]
+  },
+  "input/ids_decomposition.txt": {
+    "origin": "real",
+    "refs": [
+      "ids.txt"
+    ]
+  },
+  "input/yan_cnchar_letter_sequence.json": {
+    "origin": "real",
+    "refs": [
+      "cnchar-stroke-order-jian.json"
+    ]
+  },
+  "input/letter_table.json": {
+    "origin": "real",
+    "refs": [
+      "cnchar-stroke-table.json"
+    ]
+  },
+  "input/name_class_table.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py STROKE_TOKENS"
+    ]
+  },
+  "input/tiebreak_rule.json": {
+    "origin": "reconstructed_rule_state",
+    "refs": [
+      "mechanism documented in GOLDEN_CHANGELOG.md",
+      "SPOTCHECK_100.md"
+    ]
+  },
+  "input/pipeline_output.json": {
+    "origin": "reconstructed_pipeline_state",
+    "refs": [
+      "computed under input/tiebreak_rule.json"
+    ]
+  },
+  "raw/sequence_source_lines.txt": {
+    "origin": "real",
+    "refs": [
+      "codepoint-character-sequence.txt verbatim lines U+8AE9, U+8A00"
+    ]
+  },
+  "raw/ids_source_line.txt": {
+    "origin": "real",
+    "refs": [
+      "ids.txt verbatim line U+8AE9"
+    ]
+  },
+  "raw/cnchar_jian_yan_source.txt": {
+    "origin": "real",
+    "refs": [
+      "cnchar-stroke-order-jian.json verbatim entry 言"
+    ]
+  }
+}

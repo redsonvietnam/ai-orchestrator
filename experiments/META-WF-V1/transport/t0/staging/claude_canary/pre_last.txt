@@ -1,0 +1,70 @@
+Claude a répondu : VERDICT: CONDITIONAL
+
+VERDICT: CONDITIONAL
+
+Tôi chưa chạy hay thấy code của D:\ai-orchestrator. Mọi nhận định dưới đây là suy luận từ mô tả, nên các điểm chưa có thí nghiệm đỡ đều là TEST_NEEDED. Có một ràng buộc tôi không thể bỏ qua: tự động hóa giao diện web của Claude/ChatGPT/Gemini bằng tài khoản đăng nhập có thể vi phạm điều khoản dịch vụ của từng bên. Tôi không kiểm chứng điều khoản hiện hành, nên người điều phối phải tự đọc trước khi đầu tư thêm.
+
+STRONGEST_VALUE: Nó cho phép tái dùng quyền truy cập đã có mà không cần API key, và PoC đã lộ ra lỗi thật (composer nhận thiếu text, schema quá lớn). Giá trị hẹp nhất: lấy một lần phản biện từ model mà bạn chỉ có qua web, khi không có đường khác.
+
+BIGGEST_RISK: Adapter báo "đã gửi" trong khi prompt không vào đúng. Với critical review, thất bại im lặng tệ hơn thất bại ồn ào, vì reviewer trả lời một câu hỏi bị cắt cụt và kết quả vẫn trông hợp lệ. Rủi ro thứ hai: một LLM (Groq) điều khiển trình duyệt, tức bạn thêm một thành phần phi tất định và có thể ảo giác vào đúng đường truyền cần tất định.
+
+Trả lời các câu hỏi then chốt
+
+Q1. "Web Model Adapter" là abstraction đúng ở mức interface: send(request) → response + provenance. browser-use + CDP chỉ là một implementation. Đừng nâng implementation lên thành kiến trúc.
+
+Q2. Đủ brittle để không dùng làm kênh duy nhất cho critical review. Cách chứng minh send(prompt) gửi đúng: sau khi nhập, đọc lại nội dung composer qua DOM và so hash với prompt gốc trước khi bấm gửi; sau khi gửi, đọc lại message người dùng đã hiển thị trong hội thoại và so hash lần nữa. Không khớp thì abort, không gửi. Cách này tất định, không cần LLM.
+
+Q3. Text trích xuất một mình không đủ làm evidence. Tối thiểu: request gốc + hash, hash của prompt đã đọc lại từ UI, response thô, timestamp, tài khoản/profile ID, tên model hiển thị trên UI (web hay đổi model ngầm), URL hội thoại, phiên bản script. Ảnh chụp màn hình là tùy chọn và có rủi ro rò rỉ. Ghi rõ đây là bằng chứng "adapter đã làm gì", không phải bằng chứng "model đã nhận đúng".
+
+Q4. Thứ tự ưu tiên: API/MCP > CLI > browser. Browser chỉ là fallback có gắn nhãn, và kết quả phải ghi transport=browser để reviewer biết độ tin cậy thấp hơn. Chất lượng cũng khác: web có system prompt ẩn, bộ nhớ, công cụ ngầm, nên cùng model cho kết quả khác API.
+
+Q5. Free đáng giữ chỉ cho review có giá trị cao, tần suất thấp, nơi chi phí API thực sự là rào cản. Không đáng cho khối lượng lớn hoặc đường găng. Chi phí ẩn là bảo trì mỗi khi DOM đổi.
+
+Q6. Không cần lớp "AI Tab Orchestrator" riêng. OpenCode gọi thẳng một module adapter có giao diện cố định. Hai tiến trình thêm một lớp lỗi mà không thêm giá trị. Ranh giới cần rõ: adapter chỉ gửi/nhận và ghi provenance, không quyết định gì và không viết kết luận.
+
+Q7. Minimal boundary: CodeLocal sở hữu workspace và kho artifact; adapter chỉ ghi vào kho đó qua một giao diện append-only. Adapter không giữ trạng thái riêng ngoài log.
+
+Q8. GitHub chỉ khi cần người hoặc máy khác đọc cùng artifact, cần diff, hoặc cần lịch sử bất biến. Mặc định lưu local content-addressed. Cảnh báo: response thô có thể chứa thông tin riêng tư, nên lọc secret trước khi đẩy lên bất kỳ remote nào.
+
+Q9. Kiểm soát tối thiểu: profile Chrome tách riêng, cổng CDP chỉ bind 127.0.0.1 (CDP mở là quyền điều khiển toàn bộ phiên đăng nhập); mỗi profile gắn nhãn tài khoản và adapter xác minh danh tính hiển thị trước khi gửi (chặn gửi nhầm tài khoản); mỗi request mở hội thoại mới (chặn nhiễm chéo ngữ cảnh); redact secret trước khi log; không lưu cookie hay ảnh chụp mặc định; chế độ dry-run không bấm gửi.
+
+Q10. Chọn Option C: interface Backend.send() cố định; implementation theo thứ tự API → CLI → browser; browser là adapter tất định (Playwright/CDP trực tiếp, không LLM dẫn đường) với kiểm tra hash hai chiều ở trên.
+
+SECURITY_BLOCKERS:
+
+Chưa xác minh điều khoản dịch vụ của từng nhà cung cấp.
+CDP bind ngoài localhost.
+Không có kiểm tra tài khoản trước khi gửi.
+Log chứa secret hoặc nội dung nhạy cảm.
+
+KEEP: interface adapter; log provenance; mutex; pacing/retry; ghi transport.
+REMOVE: LLM (Groq/browser-use) điều khiển UI cho thao tác lặp đi lặp lại; lớp orchestrator riêng; routing nhiều account theo kiểu bỏ phiếu.
+SIMPLIFY: một adapter tất định cho mỗi trang, mỗi trang vài chục dòng selector.
+
+MUST_TEST (TEST_NEEDED):
+
+T1 send fidelity: 200 prompt có độ dài, ký tự đặc biệt (tiếng Việt, Hán, code, xuống dòng) khác nhau; đo tỷ lệ hash đọc lại khớp. Mục tiêu: lỗi im lặng = 0, vì kiểm tra hash phải bắt được mọi sai lệch.
+T2 extraction fidelity: so response trích xuất với bản sao thủ công cho 50 phản hồi dài có code/bảng.
+T3 failure injection: cố ý đổi DOM, hết phiên, đổi model; đo tỷ lệ adapter báo lỗi rõ ràng so với trả về dữ liệu sai. Chạy cùng task set với API nếu có để đo chênh lệch chất lượng và latency.
+
+QUOTA_POLICY: luật cứng, đăng ký trước, thay vì Information Gain: gọi Claude khi quyết định khó đảo ngược, khi hai bên bất đồng, hoặc khi ai đó khai "unverified". Theo dõi trạng thái tài khoản chỉ để biết còn dùng được hay không. Tôi khuyên không thiết kế xoay vòng nhiều tài khoản để vượt hạn mức, vì điều đó có thể vi phạm điều khoản và làm bằng chứng khó truy nguồn.
+
+MODEL_ROUTING_POLICY: Critic phải khác họ model với Author. Gemini/Grok chỉ có interface, chưa bật; điều kiện bật là một thí nghiệm cho thấy nó bắt được lỗi mà cặp hiện tại bỏ sót.
+
+RECOMMENDED_MINIMAL_ARCHITECTURE:
+
+
+OpenCode ──► Backend.send(request) ──► {response, provenance}
+                 │ adapters (ưu tiên): API → CLI → browser(tất định)
+                 ▼
+          artifact store (content-addressed, append-only, do CodeLocal sở hữu)
+
+Reviewer nhận quyền đọc store, tự lấy mẫu bằng seed riêng; adapter không viết kết luận.
+
+PRE-MORTEM:
+
+Kiểm tra hash chỉ chứng minh phía client. Web UI có thể cắt hoặc biến đổi prompt phía server mà DOM vẫn hiển thị đầy đủ; bằng chứng "đã gửi đúng" khi đó yếu hơn tôi nói.
+Chi phí bảo trì vượt giá trị. DOM đổi vài tuần một lần thì "free" thành nợ kỹ thuật, và bạn tiêu thời gian sửa selector thay vì làm việc thật.
+Điểm mù của tôi: tôi không biết điều khoản hiện hành, hạn mức thực tế hay hành vi UI mới nhất của các trang này, nên đánh giá về tính khả thi và tuân thủ có thể lệch.
+
+FINAL_RECOMMENDATION: Giữ ở mức adapter có điều kiện, không nâng thành năng lực chính thức. Trước hết đọc điều khoản dịch vụ, rồi viết lại đường gửi thành tất định với kiểm tra hash hai chiều và chạy T1–T3. Nếu T1 cho thấy lỗi im lặng khác 0 sau kiểm tra hash, browser bị loại khỏi critical review và chỉ dùng cho việc không quan trọng.

@@ -1,0 +1,5 @@
+- **Total B0 Universe (U+4E00..9FFF, U+3400..4DBF):** `27584`
+- **Fully Qualified HANSTROKE Chars (Q3):** `27172 (98.51%)`
+### IDS Confidence Breakdown (Q2)
+| Confidence Category | Character Count | Percentage |
+| **EXACT** | 27362 | 99.2% |

@@ -1,0 +1,18 @@
+{
+  "task_id": "F2",
+  "title": "regex alternative resolution - first-position group",
+  "files": [
+    "input/stroke_input_regex.txt",
+    "input/ids_decomposition.txt",
+    "input/yan_cnchar_letter_sequence.json",
+    "input/letter_table.json",
+    "input/name_class_table.json",
+    "input/tiebreak_rule.json",
+    "input/pipeline_output.json",
+    "raw/sequence_source_lines.txt",
+    "raw/ids_source_line.txt",
+    "raw/cnchar_jian_yan_source.txt",
+    "source/provenance.json"
+  ],
+  "ground_truth": "prereg/GROUND_TRUTH.yaml (not delivered to reviewers)"
+}

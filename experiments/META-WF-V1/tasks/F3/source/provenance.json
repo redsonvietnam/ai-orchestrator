@@ -1,0 +1,33 @@
+{
+  "input/golden_entry.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py GOLDEN_ANCHORS_INLINE",
+      "GOLDEN_CHANGELOG.md"
+    ]
+  },
+  "input/pipeline_output.json": {
+    "origin": "injected_conflict",
+    "refs": [
+      "first_class set to H against golden Z"
+    ]
+  },
+  "input/sync_proposal.patch": {
+    "origin": "injected_proposal",
+    "refs": [
+      "edits frozen golden dict to match output"
+    ]
+  },
+  "input/governance_rules.json": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py L388-L399"
+    ]
+  },
+  "raw/golden_dict_source_line.txt": {
+    "origin": "real",
+    "refs": [
+      "benchmark_v3.py GOLDEN_ANCHORS_INLINE verbatim line for 以"
+    ]
+  }
+}

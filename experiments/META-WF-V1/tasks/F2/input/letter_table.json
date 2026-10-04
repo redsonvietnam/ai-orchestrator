@@ -1,0 +1,26 @@
+{
+  "k": {
+    "shape": "丶",
+    "type": "平笔",
+    "foldCount": "0",
+    "name": "点"
+  },
+  "j": {
+    "shape": "一",
+    "type": "平笔",
+    "foldCount": "0",
+    "name": "横"
+  },
+  "f": {
+    "shape": "丨",
+    "type": "平笔",
+    "foldCount": "0",
+    "name": "竖"
+  },
+  "c": {
+    "shape": "𠃍",
+    "type": "折笔",
+    "foldCount": "1",
+    "name": "横折"
+  }
+}

@@ -1,0 +1,48 @@
+# META-WF V1 — HUMAN GATE #1 APPROVAL (decision record, authored from human directive)
+# This file is NOT part of the frozen prereg; it records the gate answer + hash anchors
+# captured at approval time so invariants can detect any later amendment.
+approved_at: 2026-10-03
+canonical_workspace: D:\ai-orchestrator\experiments\META-WF-V1
+new_project_root_allowed: false
+
+decisions:
+  A1_W0: W0_STATUS=UNAVAILABLE           # no human baseline, no LLM simulation, not scored
+  A2_fixture_fidelity: ACCEPT_RECONSTRUCTED_FROM_REAL_INCIDENTS  # provenance kept in report
+  A3_failure_injection_replay: INCLUDE_NON_SCORING               # NON_SCORING_DIAGNOSTIC=true
+  A4_claude_quota: CONFIRM_W1_W2_W3_ONE_PASS_EACH                # no wording questions; no Claude-B/C
+  A5_browser_T0_failure: BLOCK_W3                                # no manual fallback; no condition change
+  A6_old_informal_runs: ARCHIVED_NON_SCORING
+  A7_gt_isolation: ACCEPT_PROCEDURAL_FOR_V1                      # limitation: not cryptographic isolation
+  A8_token_volume: ACCEPT_RAW_CHARACTER_PROXY                    # report marker: NOT_PROVIDER_TOKEN_COUNT
+
+freeze_hashes_at_approval:
+  prereg_file_sha256: b7d1d5e378241998c9b651591555c5315185e8444028dfe65e54348d8f12550d
+  ground_truth_sha256: 509782e839c267d64880e6c837879e6ddd711ea8b54dc3036f12ea8775c33b60
+  tasks_yaml_sha256: e22bdc5cc06b3a55655787229ee1f99bacbb6212990f56fabfe9bcb6be5337e1
+  metrics_sha256: 04bfd442a34140a9877d6581c122a3f8884c57ac99c198348604f9dc07d60539
+  scoring_sha256: e585270a72bfd274f20bc11d3f64a9bac7ec2d688bccf26ddcf31be66b62f397
+  task_sums:
+    F1: fdb9d665b660a96dbdf6b38decd41907e8260cd93b8bd083d0f8afb32847a627
+    F2: a1f30a097aae4d2cd25026eab4c113419150a536c97690bb96dbddd31a53e661
+    F3: 2522f27ea7e562c474d2f7f692dde335352a5d5b1c4a6e288f042ba926c437ee
+    F4: 70b0e3d459b9427fffd200fb89f2cb6a8721426c270127ba23dea5562f401d3c
+    F5: 875d8e570762ae26f80cb1de4beff43b48ed4fe2f5ec4299dbc8c7018c68d6c9
+
+freeze_rule: >
+  From approval: TASKS/GROUND_TRUTH/METRICS/SCORING yaml, fixture semantics,
+  fault truth, scoring rules are immutable. Harness defects are logged as
+  HARNESS_DEFECT, never silently fixed; scoring-affecting defects halt the
+  run pending a human gate amendment.
+
+pre_run_invariants:
+  - verify prereg hash
+  - verify ground-truth hash
+  - verify scoring hash
+  - verify task fixtures hash
+  - verify all required artifacts exist
+  - verify old workspace path unreferenced
+  - verify no production HANSTROKE changes
+  - verify no post-prereg amendment
+on_fail: STOP + HUMAN_REQUIRED
+
+next_gate: GATE_2
