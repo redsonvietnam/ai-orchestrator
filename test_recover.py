@@ -1,5 +1,7 @@
 import sys
-sys.path.insert(0, r"D:\ai-orchestrator")
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from worker import _extract_failed_generation, _recover_tool_call
 from pydantic import BaseModel
 
